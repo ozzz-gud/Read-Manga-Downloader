@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2003
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadMangaDownloader", "ReadMangaDownloader\ReadMangaDownloader.csproj", "{DA270527-3268-495E-ACB5-6045AF85034D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindosFormDownloader", "ReadMangaDownloader\WindosFormDownloader.csproj", "{DA270527-3268-495E-ACB5-6045AF85034D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{E0406C2E-898C-47FC-B737-24FCD768EB3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleDownloader", "ConsoleApp\ConsoleDownloader.csproj", "{0497B0ED-D3D7-483A-86AF-DF726ACD4AB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfDownloader", "WpfApp\WpfDownloader.csproj", "{97BAB20D-E9FD-4E6C-B5D5-185312765825}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{DA270527-3268-495E-ACB5-6045AF85034D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA270527-3268-495E-ACB5-6045AF85034D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA270527-3268-495E-ACB5-6045AF85034D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0406C2E-898C-47FC-B737-24FCD768EB3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0406C2E-898C-47FC-B737-24FCD768EB3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0406C2E-898C-47FC-B737-24FCD768EB3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0406C2E-898C-47FC-B737-24FCD768EB3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0497B0ED-D3D7-483A-86AF-DF726ACD4AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0497B0ED-D3D7-483A-86AF-DF726ACD4AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0497B0ED-D3D7-483A-86AF-DF726ACD4AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0497B0ED-D3D7-483A-86AF-DF726ACD4AB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97BAB20D-E9FD-4E6C-B5D5-185312765825}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97BAB20D-E9FD-4E6C-B5D5-185312765825}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97BAB20D-E9FD-4E6C-B5D5-185312765825}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97BAB20D-E9FD-4E6C-B5D5-185312765825}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

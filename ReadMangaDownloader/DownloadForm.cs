@@ -1,14 +1,9 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ReadMangaDownloader
+namespace WindowsFormApp
 {
     public partial class DownloadForm : Form
     {
@@ -16,50 +11,44 @@ namespace ReadMangaDownloader
         {
             InitializeComponent();
         }
-        Downloader downloader;
-        ProgressForm progress = new ProgressForm();
-
-        private void show_button_Click(object sender, EventArgs e)
+        private void DownloadForm_Load(object sender, EventArgs e)
         {
-            chapters_checkedListBox.Items.Clear();
-            string url = url_textBox.Text;
-            Task<Downloader> createDownloader = Task.Run(() =>
-            {
-                return new Downloader(url,progress);
-            });
-            Task taskShow = createDownloader.ContinueWith((prevTask) =>
-            {
-                downloader = prevTask.Result;
-                chapters_checkedListBox.Invoke(new Action(() =>
-                {
-                    foreach (var chapter in downloader.chapters)
-                        chapters_checkedListBox.Items.Add(chapter.Key);
-                }));
-            });
+            AddForm.TitleAdded += AddForm_TitleAdded;
+            Title.DownloadProgressChanged += Title_DownloadProgressChanged;
+            Title.Downloaded += Title_Downloaded;
         }
-        private bool checkedAll = true;
+        List<Title> titles = new List<Title>();
 
-        private void check_button_Click(object sender, EventArgs e)
+        private void Title_Downloaded(Title sender)
         {
-            int count = chapters_checkedListBox.Items.Count;
-            for (int i=0; i<count; i++)
-                chapters_checkedListBox.SetItemChecked(i, checkedAll);
-            checkedAll = !checkedAll;
+            Invoke(new Action(() =>
+            {
+                int row = titles.FindIndex((t) => t.Id == sender.Id);
+                dataGridView.Rows[row].Cells[1].Value = "Complete";
+            }));
         }
-
-        private void download_button_Click(object sender, EventArgs e)
+        private void Title_DownloadProgressChanged(Title sender)
         {
-            var ChaptersName = chapters_checkedListBox.CheckedItems;
-            progress.Show();
-            Task load = Task.Run(() =>
+            Invoke(new Action(() =>
             {
-                downloader.DownloadAll(ChaptersName);
-            });
-            Task end = load.ContinueWith((_) =>
-            {
-                MessageBox.Show("Загруженно");
-                progress.Exit();
-            });
+                int row = titles.FindIndex((t) => t.Id == sender.Id);
+                dataGridView.Rows[row].Cells[1].Value = sender.DownloadProgress;
+            }));
+        }
+        private void AddForm_TitleAdded(Title title)
+        {
+            Focus();
+            titles.Add(title);
+
+            dataGridView.Rows.Add();
+            dataGridView.Rows[titles.Count - 1].Cells[0].Value = title.Name;
+            dataGridView.Rows[titles.Count - 1].Cells[1].Value = "";
+            title.Download();
+        }
+        private void AddManga_button_Click(object sender, EventArgs e)
+        {
+            AddForm addForm = new AddForm();
+            addForm.Show();
         }
     }
 }
