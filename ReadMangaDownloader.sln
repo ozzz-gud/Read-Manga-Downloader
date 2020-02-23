@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleDownloader", "Consol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfDownloader", "WpfApp\WpfDownloader.csproj", "{97BAB20D-E9FD-4E6C-B5D5-185312765825}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileDownloader", "FileDownloader\FileDownloader.csproj", "{EC3BF38F-2D54-4DA2-B3FA-B6302EF3028D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryTests", "ClassLibraryTests\ClassLibraryTests.csproj", "{89ADAB22-626B-4546-B866-3CDD259842D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileDownloaderTests", "FileDownloaderTests\FileDownloaderTests.csproj", "{D10D597F-DAA4-4DD4-BEBD-284981A07B7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +39,18 @@ Global
 		{97BAB20D-E9FD-4E6C-B5D5-185312765825}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97BAB20D-E9FD-4E6C-B5D5-185312765825}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97BAB20D-E9FD-4E6C-B5D5-185312765825}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC3BF38F-2D54-4DA2-B3FA-B6302EF3028D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC3BF38F-2D54-4DA2-B3FA-B6302EF3028D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC3BF38F-2D54-4DA2-B3FA-B6302EF3028D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC3BF38F-2D54-4DA2-B3FA-B6302EF3028D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89ADAB22-626B-4546-B866-3CDD259842D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89ADAB22-626B-4546-B866-3CDD259842D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89ADAB22-626B-4546-B866-3CDD259842D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89ADAB22-626B-4546-B866-3CDD259842D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D10D597F-DAA4-4DD4-BEBD-284981A07B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D10D597F-DAA4-4DD4-BEBD-284981A07B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D10D597F-DAA4-4DD4-BEBD-284981A07B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D10D597F-DAA4-4DD4-BEBD-284981A07B7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -97,11 +97,29 @@ namespace ClassLibrary {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на div.leftContent span.eng-name.
+        /// </summary>
+        internal static string Selector_TitleNameEn {
+            get {
+                return ResourceManager.GetString("Selector_TitleNameEn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на div.leftContent span.original-name.
+        /// </summary>
+        internal static string Selector_TitleNameOrig {
+            get {
+                return ResourceManager.GetString("Selector_TitleNameOrig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на div.leftContent span.name.
         /// </summary>
-        internal static string Selector_TitleName {
+        internal static string Selector_TitleNameRu {
             get {
-                return ResourceManager.GetString("Selector_TitleName", resourceCulture);
+                return ResourceManager.GetString("Selector_TitleNameRu", resourceCulture);
             }
         }
     }

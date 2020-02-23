@@ -41,7 +41,7 @@ namespace WindowsFormApp
             titles.Add(title);
 
             dataGridView.Rows.Add();
-            dataGridView.Rows[titles.Count - 1].Cells[0].Value = title.Name;
+            dataGridView.Rows[titles.Count - 1].Cells[0].Value = title.NameRu;
             dataGridView.Rows[titles.Count - 1].Cells[1].Value = "";
             title.Download();
         }

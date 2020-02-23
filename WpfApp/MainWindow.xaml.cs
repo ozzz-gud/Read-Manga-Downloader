@@ -36,7 +36,7 @@ namespace WpfApp
             Dispatcher.Invoke(() =>
             {
                 int row = titles.FindIndex((t) => t.Id == title.Id);
-                ListView.Items[row] = new { title.Name, DownloadProgress = "Complete" };
+                ListView.Items[row] = new { title.NameRu, DownloadProgress = "Complete" };
             });
         }
         private void Title_DownloadProgressChanged(Title title)

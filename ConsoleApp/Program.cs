@@ -18,14 +18,14 @@ namespace ConsoleApp
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.CursorTop = progressTop;
-                Console.Write($"{t.Name} downloaded at {t.DownloadProgress}");
+                Console.Write($"{t.NameRu} downloaded at {t.DownloadProgress}");
                 Console.ResetColor();
                 Environment.Exit(0);
             };
             Title.DownloadProgressChanged += (Title t) =>
             {
                 Console.CursorTop = progressTop;
-                Console.Write($"{t.Name} downloaded at {t.DownloadProgress}");
+                Console.Write($"{t.NameRu} downloaded at {t.DownloadProgress}");
             };
 
             if(args!=null && args.Length == 2)

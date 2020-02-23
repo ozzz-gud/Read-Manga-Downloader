@@ -1,15 +1,43 @@
-﻿using System.Collections.Generic;
+﻿using AngleSharp.Html.Parser;
+using System.Collections.Generic;
+using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    public class Chapter : Page
+    public class Chapter : WebPage
     {
+        private static HtmlParser parser = new HtmlParser();
+        private static WebClient webClient = new WebClient() { Encoding = Encoding.UTF8 };
+        private static object locker = new object();
+
+        public int Index { get; private set; }
+        public string Name { get; private set; }
+        public int CountImage { get => Images.Count; }
         public Dictionary<string, string> Images { get; private set; }
-        public Chapter(string url, string name, Title titel) : base(url, titel)
+
+        public Chapter(string url, string name, int index) : base(url)
         {
-            Name = name;
-            Pharsed += UpdateImageList;
+            Name = name.GetRightName();
+            Index = index;
+        }
+        public async void UpdateChapterInfoAsync()
+        {
+            await Task.Run(() =>
+            {
+                UpdateChapterInfo();
+            });
+        }
+        public void UpdateChapterInfo()
+        {
+            lock (locker)
+            {
+                var code = webClient.DownloadString(Url);
+                Html = parser.ParseDocument(code);
+                UpdateImageList();
+            }
         }
         private void UpdateImageList()
         {

@@ -1,50 +1,64 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    public class Title
+    public class Title: IEnumerable<Chapter>
     {
-        public static event Action<Title> ChapterListUpdated;
-        public static event Action<Title> Downloaded;
-        public static event Action<Title> DownloadProgressChanged;
+        public int Id { get; private set; }
+        public Chapter this[int index]
+        {
+            get => Chapters[index];
+        }
+        public string NameRu
+        {
+            get => mainPage.MangaNameRu;
+        }
+        public string NameEn
+        {
+            get => mainPage.MangaNameEn;
+        }
+        public string NameOrig
+        {
+            get => mainPage.MangaNameOrig;
+        }
 
-        private readonly Downloader downloader;
-        private readonly MainPage mainPage;
-
+        private List<Chapter> Chapters;
+        private MainPage mainPage;
         private static int numberTitles = 0;
-        public readonly int Id;
 
-        public int ChapterDownloaded;
-        public int ImageDownloaded;
-        public string DownloadProgress
-        {
-            get => $@"C:{ChapterDownloaded}/{ChapterNumberForDownload.Count} I:{ImageDownloaded}";
-        }
-
-        public string Name
-        {
-            get => mainPage.Name;
-        }
-        public List<Chapter> Chapters
-        {
-            get => mainPage.Chapters;
-        }
-        public List<int> ChapterNumberForDownload;
-
-        public Title(string url)
+        public Title(string url, bool RunAsync)
         {
             Id = numberTitles++;
-            downloader = new Downloader();
-            downloader.TitleDownloaded += () => Downloaded.Invoke(this);
-            downloader.DownloadProgressChanged += () => DownloadProgressChanged.Invoke(this);
-            mainPage = new MainPage(url, this);
-            mainPage.Pharsed += () => ChapterListUpdated?.Invoke(this);
-            downloader.DownloadPageAsync(mainPage);
+            if (RunAsync)
+                InitAsync(url);
+            else
+                Init(url);
         }
-        public void Download(string template = null)
+
+        private void Init(string url)
         {
-            downloader.DownloadTitle(this,template);
+            mainPage = new MainPage(url);
+            Chapters = mainPage.GetContents();
+        }
+        private async void InitAsync(string url)
+        {
+            await Task.Run(() =>
+            {
+                Init(url);
+            });
+        }
+
+        public IEnumerator<Chapter> GetEnumerator()
+        {
+            return ((IEnumerable<Chapter>)Chapters).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<Chapter>)Chapters).GetEnumerator();
         }
     }
 }

@@ -129,7 +129,13 @@
   <data name="Selector_scriptWithListImages" xml:space="preserve">
     <value>.reader-bottom script:nth-child(4)</value>
   </data>
-  <data name="Selector_TitleName" xml:space="preserve">
+  <data name="Selector_TitleNameEn" xml:space="preserve">
+    <value>div.leftContent span.eng-name</value>
+  </data>
+  <data name="Selector_TitleNameOrig" xml:space="preserve">
+    <value>div.leftContent span.original-name</value>
+  </data>
+  <data name="Selector_TitleNameRu" xml:space="preserve">
     <value>div.leftContent span.name</value>
   </data>
 </root>
