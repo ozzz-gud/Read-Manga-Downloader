@@ -13,7 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ClassLibrary;
+using ClassLibrary.Base;
+using ClassLibrary.Downloader;
 
 namespace WpfApp
 {
@@ -26,8 +27,8 @@ namespace WpfApp
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             AddWindow.TitleAdded += AddWindow_TitleAdded;
-            ClassLibrary.Title.DownloadProgressChanged += Title_DownloadProgressChanged;
-            ClassLibrary.Title.Downloaded += Title_Downloaded;
+            //ClassLibrary.Title.DownloadProgressChanged += Title_DownloadProgressChanged;
+            //ClassLibrary.Title.Downloaded += Title_Downloaded;
         }
 
         List<Title> titles = new List<Title>();
@@ -35,7 +36,7 @@ namespace WpfApp
         {
             Dispatcher.Invoke(() =>
             {
-                int row = titles.FindIndex((t) => t.Id == title.Id);
+                int row = titles.FindIndex((t) => t.IndexNumber == title.IndexNumber);
                 ListView.Items[row] = new { title.NameRu, DownloadProgress = "Complete" };
             });
         }
@@ -52,7 +53,7 @@ namespace WpfApp
             Focus();
             titles.Add(title);
             ListView.Items.Add(title);
-            title.Download();
+            //title.Download();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

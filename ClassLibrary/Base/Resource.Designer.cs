@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfApp.Properties {
+namespace ClassLibrary.Base {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace WpfApp.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class Resource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Resource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace WpfApp.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WpfApp.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ClassLibrary.Base.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,69 @@ namespace WpfApp.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на http://readmanga.me.
+        /// </summary>
+        internal static string Host {
+            get {
+                return ResourceManager.GetString("Host", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на div.chapters-link tbody a.
+        /// </summary>
+        internal static string Selector_ChapterLinks {
+            get {
+                return ResourceManager.GetString("Selector_ChapterLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .mtr-message.
+        /// </summary>
+        internal static string Selector_IsAfter18 {
+            get {
+                return ResourceManager.GetString("Selector_IsAfter18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .reader-bottom script:nth-child(4).
+        /// </summary>
+        internal static string Selector_scriptWithListImages {
+            get {
+                return ResourceManager.GetString("Selector_scriptWithListImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на div.leftContent span.eng-name.
+        /// </summary>
+        internal static string Selector_TitleNameEn {
+            get {
+                return ResourceManager.GetString("Selector_TitleNameEn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на div.leftContent span.original-name.
+        /// </summary>
+        internal static string Selector_TitleNameOrig {
+            get {
+                return ResourceManager.GetString("Selector_TitleNameOrig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на div.leftContent span.name.
+        /// </summary>
+        internal static string Selector_TitleNameRu {
+            get {
+                return ResourceManager.GetString("Selector_TitleNameRu", resourceCulture);
             }
         }
     }
