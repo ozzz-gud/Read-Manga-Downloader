@@ -45,27 +45,27 @@ namespace ClassLibrary.Downloader
         {
             Task.Run(() =>
             {
-                var FolderWithChapters = Path.Combine(task.PathToDownload, task.Title.NameRu);
+                var FolderWithChapters = Path.Combine(task.FolderToDownload, task.Title.NameRu);
                 ChapterDownloader downloader = new ChapterDownloader(FolderWithChapters);
                 downloader.Downloaded += () => Downloaded(task);
                 downloader.DownloadProgresChanged += () =>
                 {
-                    Interlocked.Increment(ref task.progress.DownloadedImages);
+                    Interlocked.Increment(ref task.Progress.DownloadedImages);
                     DownloadProgresChanged(task);
                 };
-                var listTask = from chapter in task.Title 
-                           where task.IndexNumberForDownload.Contains(chapter.IndexNumber) 
-                           select downloader.AddToDownload(chapter);
+                var listTask = from index in task.IndexNumbersForDownload
+                               select downloader.AddToDownload(task.Title[index]);
                 Task<int>[] tasks = listTask.ToArray();
                 int[] count = Task.WhenAll(tasks).Result;
-                task.progress.CountImages = count.Sum();
-                downloader.StartDownload();
+                task.Progress.CountImages = count.Sum();
+                downloader.StartDownload(task.cancellationToken);
             });
         }
-        public void AddTitleToDownload(Title title, string template, string pathToDownload)
+        public TaskDownloadTitle AddTitleToDownload(Title title, string template, string pathToDownload)
         {
             var downloadTask = new TaskDownloadTitle(title, template, pathToDownload);
             AddTaskToDownload(downloadTask);
+            return downloadTask;
         }
         public void AddTaskToDownload(TaskDownloadTitle task)
         {

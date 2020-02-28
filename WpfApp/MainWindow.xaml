@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
-        xmlns:tit="clr-namespace:ClassLibrary;assembly=ClassLibrary"
         mc:Ignorable="d"
         Title="Скачать мангу с ReadManga.me" Height="400" Width="400" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid>
@@ -12,8 +11,8 @@
         <ListView x:Name="ListView" HorizontalAlignment="Left" Height="326" Margin="10,34,0,0" VerticalAlignment="Top" Width="374" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="274" Header="Имя" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Width="100" Header="Прогресс" DisplayMemberBinding="{Binding DownloadProgress}"/>
+                    <GridViewColumn Width="274" Header="Имя" DisplayMemberBinding="{Binding NameRu}"/>
+                    <GridViewColumn Width="100" Header="Прогресс" DisplayMemberBinding="{Binding ProgrssInPersent}"/>
                 </GridView>
             </ListView.View>
         </ListView>

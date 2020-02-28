@@ -58,7 +58,7 @@ namespace WinFormApp
                 List<int> ChapterNumberForDownload = new List<int>();
 
                 foreach (int indexChecked in checkedIndexes)
-                    ChapterNumberForDownload.Add(indexChecked);
+                    ChapterNumberForDownload.Add(indexChecked+1);
                 string pathToDownload = PathToDownload_textBox.Text;
                 TaskDownloadTitle downloadTask = 
                     new TaskDownloadTitle(title, ChapterNumberForDownload, pathToDownload);

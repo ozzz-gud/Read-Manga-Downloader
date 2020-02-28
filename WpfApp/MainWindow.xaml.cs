@@ -27,33 +27,35 @@ namespace WpfApp
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             AddWindow.TitleAdded += AddWindow_TitleAdded;
-            //ClassLibrary.Title.DownloadProgressChanged += Title_DownloadProgressChanged;
-            //ClassLibrary.Title.Downloaded += Title_Downloaded;
+            TitleDownloader.DownloadProgresChanged += Title_DownloadProgressChanged;
+            TitleDownloader.Downloaded += Title_Downloaded;
         }
+        private readonly TitleDownloader TitleDownloader = new TitleDownloader(3);
+        private readonly List<TaskDownloadTitle> downloadTasks = new List<TaskDownloadTitle>();
 
-        List<Title> titles = new List<Title>();
-        private void Title_Downloaded(Title title)
+        private void Title_Downloaded(TaskDownloadTitle task)
         {
             Dispatcher.Invoke(() =>
             {
-                int row = titles.FindIndex((t) => t.IndexNumber == title.IndexNumber);
-                ListView.Items[row] = new { title.NameRu, DownloadProgress = "Complete" };
+                int row = task.IndexNumber;
+                ListView.Items[row] = new { task.Title.NameRu, ProgrssInPersent = "Complete" };
             });
         }
-        private void Title_DownloadProgressChanged(Title title)
+        private void Title_DownloadProgressChanged(TaskDownloadTitle task)
         {
             Dispatcher.Invoke(() =>
             {
-                ListView.Items.Refresh();
+                int row = task.IndexNumber;
+                ListView.Items[row] = new { task.Title.NameRu, ProgrssInPersent=task.Progress.ProgrssInPersent };
             });
         }
 
-        private void AddWindow_TitleAdded(Title title)
+        private void AddWindow_TitleAdded(TaskDownloadTitle task)
         {
             Focus();
-            titles.Add(title);
-            ListView.Items.Add(title);
-            //title.Download();
+            downloadTasks.Add(task);
+            TitleDownloader.AddTaskToDownload(task);
+            ListView.Items.Add(new { task.Title.NameRu, task.Progress.ProgrssInPersent });
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

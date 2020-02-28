@@ -5,6 +5,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ClassLibrary.Base;
+using System.Threading;
 
 namespace ClassLibrary.Downloader
 {
@@ -33,7 +34,7 @@ namespace ClassLibrary.Downloader
             }
             return chapter.Images.Count;
         }
-        public async void StartDownload()
+        public async void StartDownload(CancellationToken cancellationToken)
         {
             List<Task> tasks = new List<Task>();
             while (queue.TryDequeue(out Image img))
@@ -41,15 +42,15 @@ namespace ClassLibrary.Downloader
                 CheckOrCreateDirectory(img.FolderToDownload);
                 if (!File.Exists(img.FullPath))
                 {
-                    tasks.Add(DownloadImage(img));
+                    tasks.Add(DownloadImage(img, cancellationToken));
                 }
             }
             await Task.WhenAll(tasks);
             Downloaded?.Invoke();
         }
-        private async Task DownloadImage(Image image)
+        private async Task DownloadImage(Image image, CancellationToken cancellationToken)
         {
-            var response = await client.GetAsync(image.Url);
+            var response = await client.GetAsync(image.Url, cancellationToken);
             if(response.IsSuccessStatusCode)
             {
                 var content = response.Content;

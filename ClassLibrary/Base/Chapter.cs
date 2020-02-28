@@ -35,17 +35,21 @@ namespace ClassLibrary.Base
                 Images.Add(image);
             }
         }
+        private readonly Regex regex = new Regex("('.*?'),(.*?),(\".*?\")", RegexOptions.Compiled);
         private string[] GetLinks()
         {
+            List<string> Urls = new List<string>();
             string text = Html.QuerySelector(Resource.Selector_scriptWithListImages).TextContent;
-            text = text.Remove(0, text.IndexOf("[[") + 1);
-            text = text.Remove(text.LastIndexOf("]"));
 
-            text = Regex.Replace(text, "\\['','", "");
-            text = Regex.Replace(text, "\",\\d+,\\d+\\]", "");
-            text = Regex.Replace(text, "',\"", "");
+            var matches = regex.Matches(text);
+            foreach (Match match in matches)
+            {
+                var host = match.Groups[1].Value.Trim('\'');
+                var addres = match.Groups[3].Value.Trim('"');
+                Urls.Add(string.Concat(host,addres));
+            }
 
-            return text.Split(','); ;
+            return Urls.ToArray();
         }
         public override string ToString()
         {

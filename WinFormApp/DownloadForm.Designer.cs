@@ -31,7 +31,8 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.MangaName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Progress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddManga_button = new System.Windows.Forms.Button();
+            this.Add_button = new System.Windows.Forms.Button();
+            this.Stop_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,10 +49,12 @@
             this.Progress});
             this.dataGridView.Location = new System.Drawing.Point(13, 54);
             this.dataGridView.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
             this.dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(689, 157);
             this.dataGridView.TabIndex = 0;
             // 
@@ -72,23 +75,34 @@
             this.Progress.ReadOnly = true;
             this.Progress.Width = 127;
             // 
-            // AddManga_button
+            // Add_button
             // 
-            this.AddManga_button.Location = new System.Drawing.Point(13, 13);
-            this.AddManga_button.Margin = new System.Windows.Forms.Padding(4);
-            this.AddManga_button.Name = "AddManga_button";
-            this.AddManga_button.Size = new System.Drawing.Size(128, 33);
-            this.AddManga_button.TabIndex = 1;
-            this.AddManga_button.Text = "Добавить";
-            this.AddManga_button.UseVisualStyleBackColor = true;
-            this.AddManga_button.Click += new System.EventHandler(this.AddManga_button_Click);
+            this.Add_button.Location = new System.Drawing.Point(13, 13);
+            this.Add_button.Margin = new System.Windows.Forms.Padding(4);
+            this.Add_button.Name = "Add_button";
+            this.Add_button.Size = new System.Drawing.Size(63, 33);
+            this.Add_button.TabIndex = 1;
+            this.Add_button.Text = "Add";
+            this.Add_button.UseVisualStyleBackColor = true;
+            this.Add_button.Click += new System.EventHandler(this.Add_button_Click);
+            // 
+            // Stop_button
+            // 
+            this.Stop_button.Location = new System.Drawing.Point(83, 14);
+            this.Stop_button.Name = "Stop_button";
+            this.Stop_button.Size = new System.Drawing.Size(78, 33);
+            this.Stop_button.TabIndex = 2;
+            this.Stop_button.Text = "Stop";
+            this.Stop_button.UseVisualStyleBackColor = true;
+            this.Stop_button.Click += new System.EventHandler(this.Stop_button_Click);
             // 
             // DownloadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 224);
-            this.Controls.Add(this.AddManga_button);
+            this.Controls.Add(this.Stop_button);
+            this.Controls.Add(this.Add_button);
             this.Controls.Add(this.dataGridView);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -105,7 +119,8 @@
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn MangaName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Progress;
-        private System.Windows.Forms.Button AddManga_button;
+        private System.Windows.Forms.Button Add_button;
+        private System.Windows.Forms.Button Stop_button;
     }
 }
 

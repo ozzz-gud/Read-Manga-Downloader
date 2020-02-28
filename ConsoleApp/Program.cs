@@ -65,7 +65,7 @@ namespace ConsoleApp
         {
             Console.CursorTop = progressTop;
             Console.CursorLeft = 0;
-            Console.Write($"{task.Title.NameRu} downloaded at {task.progress.ProgrssInPersent}%");
+            Console.Write($"{task.Title.NameRu} downloaded at {task.Progress.ProgrssInPersent}%");
         }
     }
 }

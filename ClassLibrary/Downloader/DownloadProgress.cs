@@ -6,7 +6,17 @@
         public int DownloadedImages = 0;
         public int ProgrssInPersent
         {
-            get => (DownloadedImages * 100) / CountImages;
+            get
+            {
+                try
+                {
+                    return (DownloadedImages * 100) / CountImages;
+                }
+                catch (System.Exception)
+                {
+                    return 0;
+                }
+            }
         }
     }
 }

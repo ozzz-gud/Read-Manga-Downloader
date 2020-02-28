@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using ClassLibrary.Base;
 using ClassLibrary.Downloader;
 
 namespace WinFormApp
@@ -18,13 +18,14 @@ namespace WinFormApp
             TitleDownloader.Downloaded += Title_Downloaded;
         }
 
-        readonly TitleDownloader TitleDownloader = new TitleDownloader(3);
+        private readonly TitleDownloader TitleDownloader = new TitleDownloader(3);
+        private readonly List<TaskDownloadTitle> downloadTasks = new List<TaskDownloadTitle>();
 
         private void Title_Downloaded(TaskDownloadTitle task)
         {
             Invoke(new Action(() =>
             {
-                int row = task.Title.IndexNumber;
+                int row = task.IndexNumber;
                 dataGridView.Rows[row].Cells[1].Value = "Complete";
             }));
         }
@@ -32,23 +33,34 @@ namespace WinFormApp
         {
             Invoke(new Action(() =>
             {
-                int row = task.Title.IndexNumber;
-                dataGridView.Rows[row].Cells[1].Value = $"{task.progress.ProgrssInPersent}%";
+                int row = task.IndexNumber;
+                dataGridView.Rows[row].Cells[1].Value = $"{task.Progress.ProgrssInPersent}%";
             }));
         }
         private void AddForm_TitleAdded(TaskDownloadTitle task)
         {
             Focus();
+            downloadTasks.Add(task);
             TitleDownloader.AddTaskToDownload(task);
 
             dataGridView.Rows.Add();
-            dataGridView.Rows[task.Title.IndexNumber].Cells[0].Value = task.Title.NameRu;
-            dataGridView.Rows[task.Title.IndexNumber].Cells[1].Value = "";
+            dataGridView.Rows[task.IndexNumber].Cells[0].Value = task.Title.NameRu;
+            dataGridView.Rows[task.IndexNumber].Cells[1].Value = "";
         }
-        private void AddManga_button_Click(object sender, EventArgs e)
+        private void Add_button_Click(object sender, EventArgs e)
         {
             AddForm addForm = new AddForm();
             addForm.Show();
+        }
+
+        private void Stop_button_Click(object sender, EventArgs e)
+        {
+            //if (dataGridView.SelectedRows.Count > 0)
+            //{
+            //    var index = dataGridView.SelectedRows[0].Index;
+            //    var task = downloadTasks.Find(t => t.IndexNumber == index);
+            //    task.cancellationTokenSource.Cancel();
+            //}
         }
     }
 }
